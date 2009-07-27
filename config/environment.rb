@@ -48,10 +48,10 @@ ActionMailer::Base.default_content_type = "text/html"
 ActionMailer::Base.delivery_method = :smtp  
 ActionMailer::Base.raise_delivery_errors = true  
 ActionMailer::Base.smtp_settings = {  
-   :address => "smtp.gmail.com",
+   :address => "smtp.meudominio.com",
    :port => 587,
-   :domain => "www.d3i.com.br",  
-   :user_name => "elisa.pingret@d3i.com.br",
-   :password => "elisinha",
+   :domain => "www.meudominio.com.br",  
+   :user_name => "meuemail@meudominio.com.br",
+   :password => "minhasenha",
    :authentication  => :login
 }

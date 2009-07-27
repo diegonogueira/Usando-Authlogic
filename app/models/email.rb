@@ -3,7 +3,7 @@ class Email < ActionMailer::Base
  #Email padrao
  def padrao(options = {})
 		
-	 email = "elisa.pingret@d3i.com.br"	
+	 email = "meuemail@meudominio.com.br"	
 		
 	 recipients options[:para] || "" 
 	 from options[:from] || email  
