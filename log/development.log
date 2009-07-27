@@ -1,0 +1,97 @@
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-07-26 12:36:36) [GET]
+
+ActionController::RoutingError (No route matches "/login" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2009-07-26 12:36:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+ActionController::UnknownAction (No action responded to index. Actions: create, current_user, edit, new, show, and update):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#new (for 127.0.0.1 at 2009-07-26 12:36:46) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+
+NameError (uninitialized constant Authlogic):
+  app/models/user_session.rb:1
+  app/controllers/application_controller.rb:17:in `current_user_session'
+  app/controllers/application_controller.rb:10:in `current_user'
+  app/controllers/application_controller.rb:29:in `require_no_user'
+
+Rendered rescues/_trace (235.8ms)
+Rendered rescues/_request_and_response (8.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-07-26 12:37:00) [GET]
+
+ActionController::RoutingError (No route matches "/user_session/new" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2009-07-26 12:37:03) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+
+ActionController::UnknownAction (No action responded to new. Actions: current_user):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UserSessionsController#index (for 127.0.0.1 at 2009-07-26 12:37:09) [GET]
+  Parameters: {"action"=>"index", "controller"=>"user_sessions"}
+
+ActionController::UnknownAction (No action responded to index. Actions: current_user):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#new (for 127.0.0.1 at 2009-07-26 12:37:17) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+
+NameError (uninitialized constant Authlogic):
+  app/models/user_session.rb:1
+  app/controllers/application_controller.rb:17:in `current_user_session'
+  app/controllers/application_controller.rb:10:in `current_user'
+  app/controllers/application_controller.rb:29:in `require_no_user'
+
+Rendered rescues/_trace (172.2ms)
+Rendered rescues/_request_and_response (0.8ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#new (for 127.0.0.1 at 2009-07-26 12:38:54) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+
+NameError (uninitialized constant Authlogic):
+  app/models/user_session.rb:1
+  app/controllers/application_controller.rb:17:in `current_user_session'
+  app/controllers/application_controller.rb:10:in `current_user'
+  app/controllers/application_controller.rb:29:in `require_no_user'
+
+Rendered rescues/_trace (168.5ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#new (for 127.0.0.1 at 2009-07-26 12:39:12) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+
+ActiveRecord::StatementInvalid (Could not find table 'users'):
+  app/controllers/users_controller.rb:19:in `new'
+  app/controllers/users_controller.rb:19:in `new'
+
+Rendered rescues/_trace (157.7ms)
+Rendered rescues/_request_and_response (5.8ms)
+Rendering rescues/layout (internal_server_error)

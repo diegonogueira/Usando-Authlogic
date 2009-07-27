@@ -1,0 +1,18 @@
+<% form_for @user_session, :url => user_sessions_path do |f| %>
+
+	<h1>Login</h1>
+
+	<p>
+		Login<br>
+		<%= f.text_field :username %>	  
+	</p>
+	<p>
+		Password<br>
+		<%= f.password_field :password %><br />
+	</p>
+	<p>
+	   <%= f.submit "Login", :id => "botao" %> | 
+	   <%= link_to "esqueci a senha", new_password_reset_path %>
+	</p>
+
+<% end %>

@@ -19,6 +19,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
+    config.gem "authlogic"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -39,3 +40,18 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+#require 'tls_smtp'
+
+#Configuração para envio de e-mail
+ActionMailer::Base.default_content_type = "text/html"  
+ActionMailer::Base.delivery_method = :smtp  
+ActionMailer::Base.raise_delivery_errors = true  
+ActionMailer::Base.smtp_settings = {  
+   :address => "smtp.seudominio.com",
+   :port => 587,
+   :domain => "www.seudominio.com.br",  
+   :user_name => "seuemail@seudominio.com.br",
+   :password => "suasenha",
+   :authentication  => :login
+}
