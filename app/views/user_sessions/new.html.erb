@@ -4,14 +4,14 @@
 
 	<p>
 		Login<br>
-		<%= f.text_field :username %>	  
+		<%= f.text_field :login %>	  
 	</p>
 	<p>
-		Password<br>
+		Senha<br>
 		<%= f.password_field :password %><br />
 	</p>
 	<p>
-	   <%= f.submit "Login", :id => "botao" %> | 
+	   <%= f.submit "Entrar" %> | 
 	   <%= link_to "esqueci a senha", new_password_reset_path %>
 	</p>
 

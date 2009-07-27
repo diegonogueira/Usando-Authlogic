@@ -36,8 +36,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:notice] = 'User was successfully created.'
-        format.html { redirect_to(@user) }
+        send_email_active_user
+        flash[:notice] = 'Usuário criado com sucesso. Você receberá um email para ativação do mesmo.'
+        
+        format.html { redirect_to logout_path }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -62,5 +64,21 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  private
+  
+	#Envia email (usuário ativar usuário)
+	def send_email_active_user
+		corpo = <<-CODE
+		<b>Seu cadastro precisa ser confirmado<br></b>
+		<b>Data do cadastro: </b>#{@user.created_at}<br>
+		<b>Login: </b>#{@user.login}<br>
+		<b>E-mail: </b>#{@user.email}<br>
+		<b>Para ativar </b><a href='#{edit_active_user_url(@user.perishable_token)}'>clique aqui.</a>		
+		CODE
+
+		Email.deliver_padrao(:corpo => corpo, :assunto => "Cadastro Aceito", :para => @user.email)
+ 
+	end   
 
 end

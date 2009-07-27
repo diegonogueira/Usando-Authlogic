@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
 		reset_perishable_token!	  	
 	end	
 	
+	def deliver_active_user_instructions!
+		reset_perishable_token!	  	
+	end		
+	
 end

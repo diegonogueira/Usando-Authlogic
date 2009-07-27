@@ -2,22 +2,17 @@ class PasswordResetsController < ApplicationController
 
 	before_filter :load_user_using_perishable_token, :only => [:edit, :update]
 
-	def new  
-		render  
+	def new    
 	end  
 
 	def create  
-		@user = User.search(:email => params[:email])  
+		@user = User.find_by_email(params[:email])  
 		if @user && @user.deliver_password_reset_instructions!
-			corpo = "Acesse <b>Link: </b><a href='#{edit_password_reset_url(@user.perishable_token)}'>clique aqui.</a>"
-
-			Email.deliver_padrao(:assunto => "Instruções para recuperação de senha", 
-			:corpo => corpo,:para => @user.email)			
-
-			flash[:alert] = "Foi enviado por e-mail a instrução de como alterar a sua senha."  
+			send_email_password_reset
+			flash[:notice] = "Foi enviado por e-mail a instrução de como alterar a sua senha."  
 			redirect_to login_path			  	
 		else  
-			flash[:alert] = "Nenhum usuário com o e-mail informado!"  
+			flash[:notice] = "Nenhum usuário com o e-mail informado!"  
 			render :action => :new  
 		end  
 	end 
@@ -30,8 +25,8 @@ class PasswordResetsController < ApplicationController
 		@user.password = params[:user][:password]  
 		@user.password_confirmation = params[:user][:password_confirmation]  
 		if @user.save  
-			flash[:alert] = "Senha alterada com sucesso!"  
-			redirect_to archives_path
+			flash[:notice] = "Senha alterada com sucesso!"  
+			redirect_to edit_user_path(@user)
 		else  
 			render :action => :edit  
 		end  
@@ -42,9 +37,22 @@ class PasswordResetsController < ApplicationController
 		@user = User.find_using_perishable_token(params[:id])
 
 		if !@user 
-			flash[:alert] = "Link inválido!"
+			flash[:notice] = "Link inválido!"
 			redirect_to :controller => "users", :action => "new" 
 		end
 	end  
+	
+	#Envia email (instruções para recuperar a senha)
+	def send_email_password_reset
+		corpo = <<-CODE
+		<b>Instruções para trocar a senha a senha<br></b>
+		<b>Login: </b>#{@user.login}<br>
+		<b>E-mail: </b>#{@user.email}<br>
+		<b>Para trocar a senha <b>Link: </b><a href='#{edit_password_reset_url(@user.perishable_token)}'>clique aqui.</a>
+		CODE
+
+		Email.deliver_padrao(:corpo => corpo, :assunto => "Instruções para trocar a senha", :para => @user.email)
+ 
+	end 		
 	
 end

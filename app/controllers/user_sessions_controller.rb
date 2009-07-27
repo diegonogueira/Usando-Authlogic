@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
    	if current_user.status #verifica se o usuário esta ativo
 			redirect_back_or_default login_path
 		else
-			flash[:alert] = "Seu usuário não está ativo."
+			flash[:notice] = "Seu usuário ainda não está ativo."
 			destroy
 		end
    else
